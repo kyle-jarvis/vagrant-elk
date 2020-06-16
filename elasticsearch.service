@@ -1,0 +1,36 @@
+[Unit]
+Description=Elasticsearch
+Documentation=http://www.elastic.co
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Environment=ES_HOME=/home/vagrant/elasticsearch-7.7.0/
+Environment=CONF_DIR=/home/vagrant/elasticsearch-7.7.0/config/
+Environment=DATA_DIR=/home/vagrant/elasticsearch-7.7.0/data/
+Environment=LOG_DIR=/home/vagrant/elasticsearch-7.7.0/log/
+Environment=PID_DIR=/home/vagrant/elasticsearch-7.7.0/
+Environment=JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+WorkingDirectory=/home/vagrant/elasticsearch-7.7.0/
+
+User=vagrant
+Group=vagrant
+
+ExecStart=/home/vagrant/elasticsearch-7.7.0/bin/elasticsearch \
+                                                -p ${PID_DIR}/elasticsearch.pid \
+                                                --quiet \
+                                                -Epath.logs=${LOG_DIR} \
+                                                -Epath.data=${DATA_DIR} \
+                                                -Enetwork.host=127.0.0.1 \
+
+StandardOutput=journal
+StandardError=inherit
+LimitNOFILE=65536
+LimitMEMLOCK=infinity
+TimeoutStopSec=0
+KillSignal=SIGTERM
+SendSIGKILL=no
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

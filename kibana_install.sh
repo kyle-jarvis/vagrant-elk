@@ -8,10 +8,11 @@ if [[ ! -f $kibana ]]; then
     shasum -a 512 -c kibana-7.7.0-linux-x86_64.tar.gz.sha512
 fi
 
-tar -xzf kibana-7.7.0-linux-x86_64.tar.gz
-
-cat >> /home/vagrant/.bashrc <<END
-# add for anaconda install
+if [[ ! -d $es ]]; then
+    tar -xzf kibana-7.7.0-linux-x86_64.tar.gz
+    if [[ $? -eq 0 ]]; then
+        cat >> /home/vagrant/.bashrc <<END
 PATH=/home/vagrant/kibana-7.7.0/bin:\$PATH
 END
-#cd kibana-7.7.0-linux-x86_64/
+fi
+fi

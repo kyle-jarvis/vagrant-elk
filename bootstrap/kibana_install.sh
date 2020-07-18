@@ -14,5 +14,5 @@ if [[ ! -d $es ]]; then
         cat >> /home/vagrant/.bashrc <<END
 PATH=/home/vagrant/kibana-7.7.0/bin:\$PATH
 END
-fi
+    fi
 fi

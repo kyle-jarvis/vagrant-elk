@@ -13,6 +13,8 @@ Vagrant.configure("2") do |config|
      vb.name = "elkbox"
   end
 
+  config.vm.synced_folder "bootstrap/", "/vagrant/bootstrap", disabled: true
+
   config.vm.provision "shell", inline: <<-END
   sudo apt-get update
   sudo apt-get install -y default-jdk
@@ -23,13 +25,10 @@ Vagrant.configure("2") do |config|
   chown vagrant:vagrant /home/vagrant/variables.sh
 END
 
-  config.vm.provision "shell", privileged: false, path: 'es_install.sh'
-
-  config.vm.provision "shell", privileged: false, path: 'kibana_install.sh'
-  
-  config.vm.provision "shell", privileged: false, path: 'spark_install.sh'
-
-  config.vm.provision "shell", privileged: false, path: 'setup_demo_project.sh'
+  for script in ['es_install.sh', 'kibana_install.sh', 'spark_install.sh', 'setup_demo_project.sh'] do
+    script_path = "./bootstrap/#{script}"
+    config.vm.provision "shell", privileged: false, path: script_path
+  end
 
   config.vm.provision "shell", inline: <<-END
   cp /vagrant/elasticsearch.service /etc/systemd/system/elasticsearch.service

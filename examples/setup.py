@@ -1,5 +1,10 @@
 from setuptools import setup, find_packages
+from shutil import rmtree
+import os
 
+for build_dir in ['./build', './vagrant_elk_examples.egg_info']:
+    if os.path.exists(build_dir):
+        rmtree(build_dir)
 
 setup(
     name="vagrant-elk-examples",

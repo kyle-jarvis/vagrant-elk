@@ -5,14 +5,14 @@ Description=Kibana
 Type=simple
 User=vagrant
 Group=vagrant
-ExecStart=/home/vagrant/kibana-7.7.0-linux-x86_64/bin/kibana \
-                        "-c /home/vagrant/kibana-7.7.0-linux-x86_64/config/kibana.yml" \
+ExecStart=/home/vagrant/kibana-7.7.0/bin/kibana \
+                        "-c /home/vagrant/kibana-7.7.0/config/kibana.yml" \
                         -p 5601 \
                         --host "0.0.0.0" \
 
 
 Restart=always
-WorkingDirectory=/home/vagrant/kibana-7.7.0-linux-x86_64/
+WorkingDirectory=/home/vagrant/kibana-7.7.0/
 
 
 [Install]

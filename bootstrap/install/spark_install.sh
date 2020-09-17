@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Install spark either from a local file if it exists or else via wget.
+
+echo "Running `basename $0`"
+
 spark=spark-2.4.6-bin-hadoop2.7
 sparkfile=${spark}.tgz
 spark_url=https://apache.mirrors.nublue.co.uk/spark/spark-2.4.6
@@ -28,6 +32,8 @@ END
 fi
 fi
 
+# Next, download elasticsearch hadoop.
+
 es_hdp=elasticsearch-hadoop-7.8.0
 es_hdp_file=${es_hdp}.zip
 es_hdp_url=https://artifacts.elastic.co/downloads/elasticsearch-hadoop/${es_hdp_file}
@@ -45,6 +51,8 @@ export ES_HDP_JAR=/home/vagrant/${es_hdp}/dist/elasticsearch-hadoop-7.8.0.jar
 END
 fi
 fi
+
+# Build pyspark for installation into a virtual environment.
 
 PYTHON_DIR="/home/vagrant/${spark}/python"
 PYTHON_DIST_DIR="${PYTHON_DIR}/dist"

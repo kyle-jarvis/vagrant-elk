@@ -34,6 +34,7 @@ END
   cp ${SERVICE_FILES}/kibana.service /etc/systemd/system/kibana.service
   systemctl daemon-reload
   systemctl enable elasticsearch
+  systemctl enable kibana
   systemctl start elasticsearch
   systemctl start kibana
 END

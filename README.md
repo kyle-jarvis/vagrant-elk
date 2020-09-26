@@ -46,3 +46,5 @@ You'll see there are a few options that you can try:
 (3) `spark-es-demo search-es-index`
 
 The above commands will illustrate how to create a Spark DataFrame using the pyspark API, index the contents of a Spark DataFrame directly into an ES cluster, and finally, how to query an ES cluster using the requests lib.
+
+Running (3) with the `--match-all` flag will submit a match-all search to a specified ES index, otherwise the user will be propted for input to compose a basic match query.
